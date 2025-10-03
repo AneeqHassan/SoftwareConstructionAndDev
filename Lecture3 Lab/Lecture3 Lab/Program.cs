@@ -91,3 +91,39 @@ using System.Collections.Generic;
 //{
 //    public override void Speak() => Console.WriteLine("Woof!");
 //}
+
+//public class Bankaccount
+//{
+//    private decimal balance;
+//    public void Deposit(decimal amount) { balance += amount; }
+//    public decimal GetBalance() => balance;
+//}
+
+//public class Car
+//{
+//    private string brand; { get; set; }
+//    private string model; { get; set; }
+
+    
+//    public void Drive(string brand, string model) => Console.WriteLine($"{brand} {model}");"
+//}
+
+//public class Book
+//{
+//    private string Title; {  get; set; }
+//    private string Author; { get; set; }
+
+//    public void ShowDetails(string Title, string Author) => Console.WriteLine($"{Title} By {Author}");
+
+//}
+
+//public class Person
+//{
+//    public string Name; {  get; set; }
+    
+//}
+//public class Student : Person
+//{
+//    public int StudentID; { get; set; }
+//}
+
