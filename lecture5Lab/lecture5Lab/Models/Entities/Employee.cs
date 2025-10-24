@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lecture_5_lab.Models.Entities
+namespace lecture5Lab.Models.Entities
 {
     [Table("Employees")]
     public class Employee

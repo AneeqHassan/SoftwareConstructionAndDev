@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Lecture_5_lab.Migrations
+namespace lecture5Lab.Migrations
 {
     /// <inheritdoc />
     public partial class company : Migration

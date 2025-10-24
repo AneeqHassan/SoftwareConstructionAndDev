@@ -1,8 +1,8 @@
-﻿using Lecture_5_lab.Models;
-using Lecture_5_lab.Models.Entities;
+﻿using lecture5Lab.Models.Entities;
+using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using lecture5Lab.Models;
 
 using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
