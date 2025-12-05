@@ -113,6 +113,8 @@ namespace SchoolProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            
+            
             return View(student);
         }
 

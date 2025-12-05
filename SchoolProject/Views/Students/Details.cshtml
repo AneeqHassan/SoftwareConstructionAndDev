@@ -1,24 +1,72 @@
 ﻿@model SchoolProject.Models.Entities.Student
+@using System.Linq
 
-@{
-    ViewData["Title"] = "Details";
+<h2>@Model.FullName</h2>
+
+<p>
+    <a asp-controller="Enrollments"
+       asp-action="Create"
+       asp-route-studentId="@Model.Id"
+       class="btn btn-warning">
+        Enroll in Course
+    </a>
+</p>
+
+<h3>Enrolled Courses</h3>
+
+@if (!(Model.Enrollments?.Any() ?? false))
+{
+    <p class="text-muted">No courses enrolled yet.</p>
 }
-
-<h1>Details</h1>
-
-<div>
-    <h4>Student</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FullName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FullName)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+else
+{
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Enrolled</th>
+                <th>Grade</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var e in (Model.Enrollments).OrderByDescending(x => x.EnrolledOn))
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Courses"
+                           asp-action="Details"
+                           asp-route-id="@e.CourseId">
+                            @e.Course?.Title
+                        </a>
+                    </td>
+                    <td>@(e.EnrolledOn.ToString("d"))</td>
+                    <td>
+                        @{
+                            var gradeValue = "-";
+                            // Uncomment and adjust if a valid property exists:
+                            // gradeValue = string.IsNullOrEmpty(e.FinalGrade) ? "-" : e.FinalGrade;
+                        }
+                        @gradeValue
+                    </td>
+                    <td class="text-end">
+                        <a asp-controller="Enrollments"
+                           asp-action="Edit"
+                           asp-route-id="@e.Id"
+                           class="btn btn-sm btn-outline-secondary me-1">
+                            Edit
+                        </a>
+                        <form asp-controller="Enrollments"
+                              asp-action="Delete"
+                              asp-route-id="@e.Id"
+                              method="post"
+                              class="d-inline"
+                              onsubmit="return confirm('Remove enrollment?');">
+                            <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
