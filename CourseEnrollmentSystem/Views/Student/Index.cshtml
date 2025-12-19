@@ -1,9 +1,32 @@
 ﻿@model IEnumerable<CourseEnrollmentSystem.Models.Entities.Student>
-@{
-    ViewData["Title"] = "Index";
+<h2>@ViewData[index:"Title"]</h2>
+@if(TempData[key: "Success"] != null)
+{
+    <div class="alert alert-success">@TempData[key:"Success"]</div>
 }
+<p>
+    <a asp-action="Create">Add Student</a>
+</p>
 
-<h1>Index</h1>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th></th>
+    </tr>
+
+    @foreach (var s in Model)
+    {
+        <tr>
+            <td>@s.FullName</td>
+            <td>
+                <a href="/Student/Details/@s.Id">Details</a>
+            </td>
+        </tr>
+    }
+</table>
+
+@* <h1>Index</h1>
 
 <p>
     <a asp-action="Create">Add a new Student</a>
@@ -32,4 +55,4 @@
             </tr>
         }
     </tbody>
-</table>
+</table> *@
